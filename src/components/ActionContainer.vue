@@ -52,6 +52,8 @@ export default defineComponent({
   font-size: 14px;
   line-height: 24px;
   min-height: 24px;
+  word-break: break-word;
+  white-space: pre-wrap;
 }
 
 .action-container > .date-text {

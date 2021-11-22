@@ -96,6 +96,13 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.text.title-text {
+  margin-top: 128px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid lightgray;
+}
+
 .editor-container {
   width: 384px;
   max-width: 92%;
@@ -146,12 +153,6 @@ export default defineComponent({
   width: 384px;
   max-width: 92%;
   margin: 12px 0;
-}
-
-.text.title-text {
-  margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid lightgray;
 }
 
 .actions-wrapper {
