@@ -1,12 +1,12 @@
 <template>
-  <div :class="isActive ? 'active' : ''" class="action-container">
+  <div :class="`action-container ${isActive ? 'active' : ''}`" @click="handleActionClick">
     <p class="value-text">{{ action.value }}</p>
     <span class="date-text">{{ new Date(action.timestamp).toLocaleString() }}</span>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, onUnmounted } from "vue";
+import { defineComponent } from "vue";
 import { InputAction } from "tiny-undo";
 
 export default defineComponent({
@@ -16,14 +16,14 @@ export default defineComponent({
       required: true,
       type: Object as () => InputAction,
     },
+    index: Number,
     isActive: Boolean,
   },
-  setup() {
-    onMounted(() => {});
-
-    onUnmounted(() => {});
-
-    return {};
+  emits: ["click"],
+  methods: {
+    handleActionClick() {
+      this.$emit("click", this.index);
+    },
   },
 });
 </script>
@@ -31,14 +31,14 @@ export default defineComponent({
 <style scoped>
 .action-container {
   flex-shrink: 0;
-  width: 382px;
+  width: 384px;
   padding: 8px 12px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   margin: 0 8px;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   border: 1px solid #f1f1f1;
 }
