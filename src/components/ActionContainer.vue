@@ -1,6 +1,6 @@
 <template>
   <div :class="`action-container ${isActive ? 'active' : ''}`" @click="handleActionClick">
-    <p class="value-text">{{ action.value }}</p>
+    <p class="value-text"><span class="split-text">“</span>{{ action.value }}<span class="split-text">”</span></p>
     <span class="date-text">{{ new Date(action.timestamp).toLocaleString() }}</span>
   </div>
 </template>
@@ -40,12 +40,12 @@ export default defineComponent({
   margin: 0 8px;
   border-radius: 8px;
   cursor: pointer;
-  border: 1px solid #f1f1f1;
+  border: 1px solid #efefef;
 }
 
 .action-container.active {
-  background-color: #eaeaea;
-  border: 1px solid #eaeaea;
+  background-color: #efefef;
+  border: 1px solid #efefef;
 }
 
 .action-container > .value-text {
@@ -56,8 +56,15 @@ export default defineComponent({
   white-space: pre-wrap;
 }
 
+.action-container > .value-text > .split-text {
+  color: gray;
+  font-weight: bold;
+}
+
 .action-container > .date-text {
+  font-family: SFMono-Regular, Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace;
   font-size: 12px;
   margin-top: 8px;
+  color: gray;
 }
 </style>

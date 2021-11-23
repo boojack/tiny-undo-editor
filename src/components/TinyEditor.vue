@@ -1,13 +1,14 @@
 <template>
-  <h1 class="text title-text">Tiny Undo Editor</h1>
+  <h1 class="text title-text">✍️ Tiny Undo Editor</h1>
+  <p class="text tip-text">Just a simple example to show how tiny-undo works.</p>
   <div class="editor-container">
     <div class="toolbar-container">
       <span class="btn" @click="runUndo">undo</span>
       <span class="btn" @click="runRedo">redo</span>
     </div>
-    <textarea ref="editorEl"></textarea>
+    <textarea ref="editorEl" placeholder="Write something right here..."></textarea>
   </div>
-  <p class="text">Undo/redo text history:</p>
+  <p class="text tip-text">Undo/redo text history:</p>
   <div class="actions-wrapper" ref="actionsContainerEl">
     <ActionContainer
       v-for="(action, index) in state.actions"
@@ -44,7 +45,9 @@ export default defineComponent({
 
     onMounted(() => {
       if (editorEl.value) {
-        tinyUndo = new TinyUndo(editorEl.value);
+        tinyUndo = new TinyUndo(editorEl.value, {
+          interval: 2000,
+        });
         state.actions = tinyUndo.getActions();
         tinyUndo.subscribe((actions, index) => {
           state.actions = [...actions];
@@ -96,11 +99,14 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.text {
+  width: 384px;
+  max-width: 92%;
+  margin-top: 16px;
+}
+
 .text.title-text {
   margin-top: 128px;
-  margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid lightgray;
 }
 
 .editor-container {
@@ -119,13 +125,14 @@ export default defineComponent({
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  margin: 16px 0;
   margin-bottom: 12px;
 }
 
 .editor-container > .toolbar-container > .btn {
   margin-right: 8px;
   cursor: pointer;
-  border: 1px solid gray;
+  border: 1px solid lightgray;
   padding: 0 8px;
   line-height: 24px;
   border-radius: 8px;
@@ -138,21 +145,21 @@ export default defineComponent({
 }
 
 .editor-container > textarea {
-  font-family: -apple-system, "system-ui", Segoe UI, Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", Segoe UI Symbol;
+  font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Source Han Sans SC", "Noto Sans CJK SC", "Microsoft YaHei",
+    "WenQuanYi Micro Hei", SimHei, sans-serif;
   width: 100%;
   height: 128px;
   resize: none;
   border-radius: 8px;
   outline: none;
-  padding: 8px;
-  font-size: 16px;
+  padding: 12px;
+  font-size: 14px;
   line-height: 24px;
+  border: 1px solid lightgray;
 }
 
-.text {
-  width: 384px;
-  max-width: 92%;
-  margin: 12px 0;
+.text.tip-text {
+  color: #333;
 }
 
 .actions-wrapper {
@@ -166,6 +173,7 @@ export default defineComponent({
   align-items: flex-start;
   overflow-x: auto;
   padding: 0 calc(50% - 200px);
+  margin-top: 16px;
 }
 
 .actions-wrapper::-webkit-scrollbar {

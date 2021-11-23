@@ -22,7 +22,8 @@ body {
 #app {
   width: 100%;
   height: 100%;
-  font-family: -apple-system, "system-ui", Segoe UI, Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", Segoe UI Symbol;
+  font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Source Han Sans SC", "Noto Sans CJK SC", "Microsoft YaHei",
+    "WenQuanYi Micro Hei", SimHei, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: black;
