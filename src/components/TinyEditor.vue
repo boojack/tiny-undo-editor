@@ -1,6 +1,4 @@
 <template>
-  <h1 class="text title-text">✍️ Tiny Undo Editor</h1>
-  <p class="text tip-text">Just a simple example to show how tiny-undo works.</p>
   <div class="editor-container">
     <div class="toolbar-container">
       <span class="btn" @click="runUndo">undo</span>
@@ -99,19 +97,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.text {
-  width: 384px;
-  max-width: 92%;
-  margin-top: 16px;
-}
-
-.text.title-text {
-  margin-top: 128px;
-}
-
 .editor-container {
   width: 384px;
-  max-width: 92%;
+  max-width: calc(100% - 16px);
   height: auto;
   display: flex;
   flex-direction: column;
@@ -156,10 +144,6 @@ export default defineComponent({
   font-size: 14px;
   line-height: 24px;
   border: 1px solid lightgray;
-}
-
-.text.tip-text {
-  color: #333;
 }
 
 .actions-wrapper {

@@ -1,7 +1,8 @@
 <template>
   <div :class="`action-container ${isActive ? 'active' : ''}`" @click="handleActionClick">
     <p class="value-text"><span class="split-text">“</span>{{ action.value }}<span class="split-text">”</span></p>
-    <span class="date-text">{{ new Date(action.timestamp).toLocaleString() }}</span>
+    <span class="addtion-text">Type: {{ action.type }}</span>
+    <span class="addtion-text">{{ new Date(action.timestamp).toLocaleString() }}</span>
   </div>
 </template>
 
@@ -32,6 +33,7 @@ export default defineComponent({
 .action-container {
   flex-shrink: 0;
   width: 384px;
+  max-width: calc(100% - 16px);
   padding: 8px 12px;
   display: flex;
   flex-direction: column;
@@ -61,7 +63,7 @@ export default defineComponent({
   font-weight: bold;
 }
 
-.action-container > .date-text {
+.action-container > .addtion-text {
   font-family: SFMono-Regular, Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace;
   font-size: 12px;
   margin-top: 8px;
